@@ -29,7 +29,7 @@ uc.on_subsystem 'tty' do
     l.info { "Added #{uc.devname} #{uc.devpath(5)} #{uc.parentpath(4)}" }
 
     # only probe if it's /dev/ttyUSB2
-    if uc.env['ID_IFACE'] == '02'
+    if uc.env['ID_IFACE'] == '00'
       l.info { "Ok, got the SMS tty at #{uc.devname}" }
       dev_symlink_path = File.join(ROOT_PATH, 'dev', uc.ttyname)
 
@@ -47,7 +47,7 @@ uc.on_subsystem 'tty' do
   uc.on_action 'remove' do
     l.info { "Removed #{uc.devname} #{uc.devpath(5)} #{uc.parentpath(4)}" }
 
-    if uc.env['ID_IFACE'] == '02'
+    if uc.env['ID_IFACE'] == '00'
       l.info { "Ok, un-registering SMS tty at #{uc.devname}" }
       dev_symlink_path = File.join(ROOT_PATH, 'dev', uc.ttyname)
       File.delete(dev_symlink_path) rescue nil

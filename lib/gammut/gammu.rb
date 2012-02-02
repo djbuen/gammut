@@ -16,7 +16,8 @@ synchronizetime = yes
 [smsd]
 PhoneID = %service_name%
 DebugLevel = 225
-Service = mysql
+Service = sql
+Driver = native_mysql
 user = %db_user%
 password = %db_password%
 PC = %db_host_with_port%
@@ -126,6 +127,7 @@ GSCF
       config_file_path = File.join(Gammut.root_path, "var/#{service_name}.gammu-smsd.config")
 
       cmd = "#{GAMMU_SMSD_BIN} -d -c #{config_file_path} -p #{pid_file}"
+      logger.info cmd
       Gammut::Utils.open_system(cmd)
 
       sleep(1)
